@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Strateq.Core.Database\Strateq.Core.Database.csproj" />
+    <ProjectReference Include="..\Strateq.Core.Model\Strateq.Core.Model.csproj" />
+    <ProjectReference Include="..\Strateq.Core.Utilities\Strateq.Core.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>

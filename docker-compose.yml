@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  cpms.api:
+    image: ${DOCKER_REGISTRY-}cpms_cpmsapi
+    environment:
+    #- AZUREKEYVAULT_ENDPOINT=https://nsrcc-dev-keyv.vault.azure.net/
+    #- AZUREKEYVAULT_CLIENTID=78df6657-763a-44ec-b0d7-d4153823ed63
+    #- AZUREKEYVAULT_CLIENTSECRET=YI58Q~VNkv9qdyFjgvX6pPRK0PBuQX0O5vt5Kdzr
+    - DATABASE_CONNECTION_STRING=Data Source=host.docker.internal,56338;Initial Catalog=HB;User ID=admin;Password=Password123
+    - REDIS_CONNECTION=host.docker.internal,6379
+    - SERVICEBUS_CONNECTION_STRING=rabbitmq
+    - BUS_TYPE=rabbit
+    - SERVICEBUS_ENABLED=false
+    - BUS_TOPIC=guest
+    - DATABASE_MIGRATION_ENABLED=true
+    - SMARTSD_API_URL=https://strateq.mysmartsd-pilot.com/api/ev/
+    - CPCONNECTOR_API_URL=wss://cpconnector.azurewebsites.net/ws
+
+    build:
+      context: .
+      dockerfile: HB.API/Dockerfile
+    restart: on-failure:5 
+    depends_on:
+      - rabbitmq
+      #- redis
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15679:15679"
+
+  #redis:
+  #  image: redis:latest
+  #  ports:
+  #    - "8883:8883"

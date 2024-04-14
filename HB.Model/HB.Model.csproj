@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+	  <PreserveCompilationContext>true</PreserveCompilationContext>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Strateq.Core.API\Strateq.Core.API.csproj" />
+    <ProjectReference Include="..\Core\Strateq.Core.Model\Strateq.Core.Model.csproj" />
+    <ProjectReference Include="..\HB.Database\HB.Database.csproj" />
+  </ItemGroup>
+
+</Project>

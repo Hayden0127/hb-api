@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cpms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cpms
+  template:
+    metadata:
+      labels:
+        app: cpms
+    spec:
+      imagePullSecrets:
+      - name: acr-secret
+      containers:
+      - name: cpms
+        image: atnregistry.azurecr.io/cpmsapi:#{Build.BuildId}#
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: ENV
+          value: "stg"
+        - name: DATABASE_CONNECTION_STRING
+          value: "Data Source=pgw-dbsvr-nonprod.database.windows.net,1433;Initial Catalog=EV-CPMS;User ID=nonproddbadmin;Password=P@ssw0rd111131415"
+        - name: REDIS_CONNECTION
+          value: ""
+        - name: AZUREBLOBSTORAGE_CONNECTION_STRING
+          value: ""
+        - name: AZUREBLOBSTORAGE_ENDPOINT
+          value: ""
+        - name: DATABASE_MIGRATION_ENABLED
+          value: "true"
+        - name: SERVICEBUS_ENABLED
+          value: "false"
+        - name: BUS_TYPE
+          value: "azure"
+        - name: BUS_TOPIC
+          value: ""
+        - name: SERVICEBUS_CONNECTION_STRING
+          value: ""
+        - name: AZUREKEYVAULT_ENDPOINT
+          value: ""
+        - name: SMARTSD_API_URL
+          value: "https://strateq.mysmartsd-pilot.com/api/ev/"
+        - name: CPCONNECTOR_API_URL
+          value: "wss://cpconnector.azurewebsites.net/ws"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: cpms
+spec:
+  type: ClusterIP
+  ports:
+   - port: 80
+     targetPort: 80
+  selector:
+    app: cpms
+    
+   
+---

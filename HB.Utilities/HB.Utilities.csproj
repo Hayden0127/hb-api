@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<PreserveCompilationContext>true</PreserveCompilationContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="RazorLight.NetCore3" Version="3.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Strateq.Core.Utilities\Strateq.Core.Utilities.csproj" />
+    <ProjectReference Include="..\HB.Database\HB.Database.csproj" />
+    <ProjectReference Include="..\HB.Model\HB.Model.csproj" />
+    <ProjectReference Include="..\HB.Database\HB.Database.csproj" />
+    <ProjectReference Include="..\HB.Model\HB.Model.csproj" />
+  </ItemGroup>
+
+</Project>
