@@ -4,9 +4,9 @@ services:
   cpms.api:
     image: ${DOCKER_REGISTRY-}cpms_cpmsapi
     environment:
-    #- AZUREKEYVAULT_ENDPOINT=https://nsrcc-dev-keyv.vault.azure.net/
-    #- AZUREKEYVAULT_CLIENTID=78df6657-763a-44ec-b0d7-d4153823ed63
-    #- AZUREKEYVAULT_CLIENTSECRET=YI58Q~VNkv9qdyFjgvX6pPRK0PBuQX0O5vt5Kdzr
+    #- AZUREKEYVAULT_ENDPOINT=
+    #- AZUREKEYVAULT_CLIENTID=
+    #- AZUREKEYVAULT_CLIENTSECRET=
     - DATABASE_CONNECTION_STRING=Data Source=host.docker.internal,56338;Initial Catalog=HB;User ID=admin;Password=Password123
     - REDIS_CONNECTION=host.docker.internal,6379
     - SERVICEBUS_CONNECTION_STRING=rabbitmq
